@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.sql.SQLException;
+
 @ControllerAdvice
 public class APIExceptionHandler {
 
@@ -24,5 +26,17 @@ public class APIExceptionHandler {
         return new ErrorMessageForClient(e.getMessage(), request.getRequestURI());
     }
 
+    @ExceptionHandler({NotFoundException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorMessageForClient NotFoundHandler(HttpServletRequest request, Exception e){
+        return new ErrorMessageForClient(e.getMessage(), request.getRequestURI());
+    }
 
+    @ExceptionHandler({Exception.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ErrorMessageForClient SQLExceptionHandler(HttpServletRequest request, Exception e){
+        return new ErrorMessageForClient(e.getMessage(), request.getRequestURI());
+    }
 }

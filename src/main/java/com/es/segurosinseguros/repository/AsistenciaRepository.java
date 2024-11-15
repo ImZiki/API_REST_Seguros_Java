@@ -1,7 +1,7 @@
 package com.es.segurosinseguros.repository;
 
 import com.es.segurosinseguros.model.AsistenciaMedica;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface AsistenciaRepository extends JpaRepository <AsistenciaMedica, Long> {
+public interface AsistenciaRepository extends CrudRepository<AsistenciaMedica, Long> {
 }

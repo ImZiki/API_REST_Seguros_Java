@@ -29,25 +29,26 @@ public class SeguroController {
 
     @GetMapping("/")
     public ResponseEntity<List<SeguroDTO>> getAll(){
-        return null;
+
+        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
     @PostMapping("/")
     public ResponseEntity<SeguroDTO> create(@RequestBody SeguroDTO body){
         if(body == null) throw new BadRequestException("Body no debe ser nulo");
-        return null;
+        return new ResponseEntity<>(service.create(body), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<SeguroDTO> update(@PathVariable String id, @RequestBody SeguroDTO body){
         if(id == null) throw new BadRequestException("Id no debe ser nulo");
         if(body == null) throw new BadRequestException("Body no debe ser nulo");
-        return null;
+        return new ResponseEntity<>(service.update(id, body), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable String id){
         if(id == null) throw new BadRequestException("Id no debe ser nulo");
-        return null;
+        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }
